@@ -46,7 +46,7 @@ namespace Mail_Client
           
         }
 
-        private void folderList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void folderList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var folder = client.GetFolders(client.PersonalNamespaces[0])[folderList.SelectedIndex];
             
@@ -59,9 +59,12 @@ namespace Mail_Client
             Console.WriteLine($"--------{folder.Name} Mailbox:");
             foreach (var i in uids)
             {
-                MimeMessage message = folder.GetMessage(i);
-                MessageBox.Show (message.Subject);
+                MimeMessage message = await folder.GetMessageAsync(i);
+                infoList.Items.Add (message.Subject);
+                //MessageBox.Show (message.Subject);
+
             }
+
 
 
 
