@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "0.1_Messenger_Server", "0.1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mail_Client", "Mail_Client\Mail_Client.csproj", "{B5456056-CA69-4858-979B-2D9B3B8A3684}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncAwait_HomeWork", "AsyncAwait_HomeWork\AsyncAwait_HomeWork.csproj", "{6BD2C970-C028-4841-AB4F-F094E0DBAD09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncAwait_HomeWork", "AsyncAwait_HomeWork\AsyncAwait_HomeWork.csproj", "{6BD2C970-C028-4841-AB4F-F094E0DBAD09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTP_Protocol_WebClient", "HTTP_Protocol_WebClient\HTTP_Protocol_WebClient.csproj", "{DF65B15A-736C-4A2A-95EF-37CFC7F2A5C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6BD2C970-C028-4841-AB4F-F094E0DBAD09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BD2C970-C028-4841-AB4F-F094E0DBAD09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BD2C970-C028-4841-AB4F-F094E0DBAD09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF65B15A-736C-4A2A-95EF-37CFC7F2A5C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF65B15A-736C-4A2A-95EF-37CFC7F2A5C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF65B15A-736C-4A2A-95EF-37CFC7F2A5C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF65B15A-736C-4A2A-95EF-37CFC7F2A5C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
