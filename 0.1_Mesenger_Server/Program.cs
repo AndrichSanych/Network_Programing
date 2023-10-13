@@ -10,43 +10,6 @@ namespace _0._1_Mesenger_Server
 {
     internal class Program
     {
-        //static int port = 8080;
-        //static void Main(string[] args)
-        //{
-        //    IPAddress iPAddress = IPAddress.Parse("127.0.0.1");
-        //    IPEndPoint ipPoint = new IPEndPoint(iPAddress, port);
-
-        //    EndPoint remoteEndPoint = new IPEndPoint(IPAddress.Any, 0);
-
-        //    Socket listenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-        //    try
-        //    {
-        //        // связываем сокет с локальной точкой, по которой будем принимать данные
-        //        listenSocket.Bind(ipPoint);
-        //        Console.WriteLine("Server started! Waiting for connection...");
-
-        //        while (true)
-        //        {
-        //            // получаем сообщение
-        //            int bytes = 0;
-        //            byte[] data = new byte[1024];
-        //            bytes = listenSocket.ReceiveFrom(data, ref remoteEndPoint);
-
-        //            string msg = Encoding.Unicode.GetString(data, 0, bytes);
-        //            Console.WriteLine($"{DateTime.Now.ToShortTimeString()}: {msg} from {remoteEndPoint}");
-
-        //            // отправляем ответ
-        //            //string message = "Message was send!";
-        //            //data = Encoding.Unicode.GetBytes(message);
-        //            //listenSocket.SendTo(data, remoteEndPoint);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //    }
-        //}
-
         static string address = "127.0.0.1";
         static int port = 8080;
         static void Main(string[] args)
@@ -61,15 +24,15 @@ namespace _0._1_Mesenger_Server
             {
                 Console.WriteLine("Server started! Waiting for connection...");
 
-                while (true)
+                //while (true)
                 {
                     // get message
                     byte[] data = listener.Receive(ref remoteEndPoint);
 
-                    string msg = Encoding.Unicode.GetString(data);
+                    string msg = Encoding.Unicode.GetString(data).ToLower();
                     Console.WriteLine($"{DateTime.Now.ToShortTimeString()}: {msg} from {remoteEndPoint}");
 
-                    msg.ToLower();
+
                     string message = "";
                     Random rand = new Random();
                     int randNum = 0;
@@ -115,7 +78,7 @@ namespace _0._1_Mesenger_Server
                         message = $"{Default[randNum]}";
                     }
 
-                    // send answer
+                   
                     data = Encoding.Unicode.GetBytes(message);
                     listener.Send(data, data.Length, remoteEndPoint);
                 }
@@ -125,6 +88,7 @@ namespace _0._1_Mesenger_Server
                 Console.WriteLine(ex.Message);
             }
         }
+
     }
 }
     

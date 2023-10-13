@@ -27,13 +27,17 @@ namespace _0._1_Messenger_Client
         public MainWindow()
         {
             InitializeComponent();
-        }
 
+        }
         UdpClient client;
         private void Send_Click(object sender, RoutedEventArgs e)
         {
-            //port = int.Parse(PortTBox.Text);
-            //address = IPAddress.Parse(IpTBox.Text);
+            if (PortTBox.Text != string.Empty && IpTBox.Text != string.Empty)
+            {
+                port = int.Parse(PortTBox.Text);
+                address = IpTBox.Text;
+            }
+
             IPEndPoint ipPoint = new IPEndPoint(IPAddress.Parse(address), port);
 
             IPEndPoint remoteIpPoint = new IPEndPoint(IPAddress.Any, 0);
@@ -43,33 +47,31 @@ namespace _0._1_Messenger_Client
             {
 
                 string message = string.Empty;
-                while (true)
+                // Message :
+                message = MessageTBox.Text;
+                MessageTBox.Text = string.Empty;
+
+                if (message != string.Empty)
                 {
-                    // Message :
-                    message = MessageTBox.Text;
-                    MessageTBox.Text = string.Empty;
+                    byte[] data = Encoding.Unicode.GetBytes(message);
 
-                    if (message != string.Empty)
-                    {
-                        byte[] data = Encoding.Unicode.GetBytes(message);
+                    MessagesLBox.Items.Add("You : ");
+                    MessagesLBox.Items.Add(message);
+                    MessagesLBox.Items.Add("");
 
-                        MessagesLBox.Items.Add("You : ");
-                        MessagesLBox.Items.Add(message);
-                        MessagesLBox.Items.Add("");
+                    // send :
+                    client.Send(data, data.Length, ipPoint);
 
-                        // send :
-                        client.Send(data, data.Length, ipPoint);
+                    // Receive answer :
+                    data = client.Receive(ref remoteIpPoint);
+                    string response = Encoding.Unicode.GetString(data);
 
-                        // Receive answer :
-                        data = client.Receive(ref remoteIpPoint);
-                        string response = Encoding.Unicode.GetString(data);
+                    MessagesLBox.Items.Add("Chat AI : ");
+                    MessagesLBox.Items.Add(response);
+                    MessagesLBox.Items.Add("");
 
-                        MessagesLBox.Items.Add("Chat AI : ");
-                        MessagesLBox.Items.Add(response);
-                        MessagesLBox.Items.Add("");
-
-                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -83,5 +85,6 @@ namespace _0._1_Messenger_Client
             client.Close();
             this.Close();
         }
+
     }
 }
